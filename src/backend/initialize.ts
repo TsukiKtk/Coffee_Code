@@ -1,38 +1,35 @@
-import { randomUUID } from 'crypto';
-
 export class User {
-  private id: string = "";
+  private id: string;
   private name: string;
   private age: number;
-  
+
   constructor(name: string, age: number) {
-    this.id = randomUUID();
-    this.name = name
-    this.age = age
-
-  };
-
-  getId(){
-    return this.id
-
+    this.id = crypto.randomUUID(); // Utilize um método para gerar IDs únicos
+    this.name = name;
+    this.age = age;
   }
 
-  getName(){
-    return this.name
-    
+  getId() {
+    return this.id;
   }
+
+  getName() {
+    return this.name;
+  }
+
+  getAge() {
+    return this.age;
+  }
+
+  setId(id: string) {
+    this.id = id;
+  }
+
   setName(name: string) {
-    return this.name
-
-  }
-
-  getAge(){
-    return this.age
-    
+    this.name = name;
   }
 
   setAge(age: number) {
-    return this.age
-    
+    this.age = age;
   }
 }

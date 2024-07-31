@@ -1,6 +1,6 @@
 <template>
-    <header>
-        <h1 class="first_h1">Coffee Code</h1>
+    <header class="first_header">
+        <h1 class="title_header">Home</h1>
 
     </header>
 
@@ -9,5 +9,4 @@
         <a href="#">2</a>
         <a href="#">3</a>
     </nav>
-    
 </template>
