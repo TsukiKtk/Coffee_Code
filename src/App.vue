@@ -1,27 +1,25 @@
-<script setup>
-import Home from './components/Home.vue'
-import NewUser from './components/NewUser.vue'
-
-</script>
-
 <template>
-  <header>
-    <!--img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />-->
-    <div class="wrapper">
-      <Home />
-
-    </div>
-
-    
-    <div class="new_user">
-      <NewUser />
-      
-    </div>
-
-  </header>
-
+  <div>
+    <router-view />
+    <nav>
+        <router-link to="/">Home</router-link>
+        <router-link to="/new-user">New User</router-link>
+        <router-link to="/profile">Profile</router-link>
+        
+      </nav>
+  </div>
 </template>
 
-<style scoped>
+<script setup>
+import { useRouter } from 'vue-router';
+</script>
 
+<style scoped>
+nav {
+  margin-bottom: 20px;
+}
+
+nav a {
+  margin-right: 10px;
+}
 </style>

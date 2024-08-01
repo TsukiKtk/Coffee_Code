@@ -1,84 +1,39 @@
 <template>
-    <div>
-      <h1>Users</h1>
-      <ul>
-        <li v-for="user in users" :key="user.getId()">
-          {{ user.getName() }} - {{ user.getAge() }}
-          <button @click="editUser(user.getId())">Edit</button>
-          <button @click="removeUser(user.getId())">Delete</button>
-        </li>
-      </ul>
-      <input v-model="newName" placeholder="Name">
-      <input v-model="newAge" type="number" placeholder="Age">
-      <button @click="addUser">Add User</button>
-    </div>
-  </template>
-  
-  <script lang="ts">
-  import { defineComponent, ref, onMounted } from 'vue';
-  import { createUser, readAllUsers, readUser, updateUser, deleteUser } from '@/backend/user-cases';
-  
-  export default defineComponent({
-    setup() {
-      const users = ref<any[]>([]);
-      const newName = ref('');
-      const newAge = ref<number | null>(null);
-  
-      const loadUsers = async () => {
+  <div>
+    <h1>New User</h1>
+    <input v-model="name" placeholder="Name">
+    <input v-model="age" type="number" placeholder="Age">
+    <button @click="createUser">Create User</button>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import { createUser as createUserApi } from '@/backend/user-cases'; // Import the API function
+
+export default defineComponent({
+  setup() {
+    const name = ref('');
+    const age = ref<number | null>(null);
+
+    const createUser = async () => {
+      if (name.value && age.value !== null) {
         try {
-          users.value = await readAllUsers();
+          await createUserApi(name.value, age.value);
+          name.value = '';
+          age.value = null;
         } catch (error) {
-          console.error('Error loading users:', error);
+          console.error('Error creating user:', error);
+          
         }
-      };
-  
-      const addUser = async () => {
-        if (newName.value && newAge.value !== null) {
-          try {
-            await createUser(newName.value, newAge.value);
-            newName.value = '';
-            newAge.value = null;
-            await loadUsers();
-          } catch (error) {
-            console.error('Error creating user:', error);
-          }
-        }
-      };
-  
-      const editUser = async (id: string) => {
-        try {
-          const user = await readUser(id);
-          const updatedName = prompt('Enter new name:', user.getName());
-          const updatedAge = prompt('Enter new age:', user.getAge().toString());
-          if (updatedName !== null && updatedAge !== null) {
-            await updateUser(id, updatedName, parseInt(updatedAge));
-            await loadUsers();
-          }
-        } catch (error) {
-          console.error('Error editing user:', error);
-        }
-      };
-  
-      const removeUser = async (id: string) => {
-        try {
-          await deleteUser(id);
-          await loadUsers();
-        } catch (error) {
-          console.error('Error deleting user:', error);
-        }
-      };
-  
-      onMounted(loadUsers);
-  
-      return {
-        users,
-        newName,
-        newAge,
-        addUser,
-        editUser,
-        removeUser
-      };
-    }
-  });
-  </script>
-  
+      }
+    };
+
+    return {
+      name,
+      age,
+      createUser
+    };
+  }
+});
+</script>
