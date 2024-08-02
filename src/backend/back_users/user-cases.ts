@@ -17,6 +17,7 @@ class Users {
     const user = this.allUsers.find((us) => us.getId() === id);
     if (!user) throw new Error('User not found');
     return user;
+
   }
 
   updateUser(id: string, name?: string, age?: number) {
@@ -24,15 +25,18 @@ class Users {
       if (us.getId() === id) {
         if (name !== undefined) us.setName(name);
         if (age !== undefined) us.setAge(age);
+
       }
       return us;
+
     });
-  }
+  };
 
   deleteUser(id: string) {
     this.allUsers = this.allUsers.filter((us) => us.getId() !== id);
-  }
-}
+
+  };
+};
 
 // Instância global
 const usersInstance = new Users();
@@ -43,6 +47,7 @@ export const createUser = (name: string, age: number) => {
 
 export const readAllUsers = () => {
   return usersInstance.readAllUsers();
+
 };
 
 export const readUser = (id: string) => {

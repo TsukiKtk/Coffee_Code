@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
-import { createUser, readAllUsers, readUser, updateUser, deleteUser } from '@/backend/user-cases';
+import { createUser, readAllUsers, readUser, updateUser, deleteUser } from '@/backend/back_users/user-cases';
 
 interface User {
   id: string;

@@ -1,0 +1,30 @@
+:root{
+    --bg-color: #003249;
+
+}
+
+* {
+    padding: 0;
+    margin: 0;
+
+}
+
+.first_header{
+    background-color: var(--bg-color);
+    padding: 5px;
+    color: #fff;
+    margin: 0;
+    border-bottom: 1px solid #fff;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    
+    .title_header {
+        margin-left: 120px; 
+    }
+    
+    .profile_icon {
+        margin-right: 35px; 
+        border-radius: 50%;
+    }
+}

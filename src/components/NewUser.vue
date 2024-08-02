@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { createUser as createUserApi } from '@/backend/user-cases'; // Import the API function
+import { createUser as createUserApi } from '@/backend/back_users/user-cases';
 
 export default defineComponent({
   setup() {
